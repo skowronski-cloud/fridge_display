@@ -491,6 +491,9 @@ function processEverything(){
 
 $(function() {
     processEverything()
+    setInterval(function(){ processEverything(); }, 1000*60);
+    
+    setInterval(function(){ window.location.reload() }, 10800000) //reload every 3h to mitigate mem leaks
 })
 </script>
 
