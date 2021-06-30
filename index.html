@@ -113,33 +113,65 @@
 </style>
 <table id="topLayout">
     <tr class="weatherDetails">
-        <td colspan="4" class="r">Clouds, 29°C</td>
-        <td colspan="4" class="l">PM10 1µg/m³</td>
+        <td colspan="4" class="r"><span id="weatherDetailsConditions">Clouds</span>, <span id="weatherDetailsTemperature">29</span>°C</td>
+        <td colspan="4" class="l"><span style="font-size: 32px">PM10</span> <span id="weatherDetailsPM10">1</span>µg/m³</td>
     </tr>
     <tr class="weatherDetails">
-        <td colspan="4" class="r">986hPa, 40%</td>
-        <td colspan="4" class="l">4:34 - 20:53</td>
+        <td colspan="4" class="r"><span id="weatherDetailsPressure">986</span> hPa, <span id="weatherDetailsHumidity">40</span>%</td>
+        <td colspan="4" class="l"><span id="weatherDetailsSunrise">4:34</span> - <span id="weatherDetailsSunset">20:53</span></td>
     </tr>
     <tr class="clock">
         <td colspan="8" class="c">
-            12:38:18
+            <span id="clockSpan">12:38:18</span>
         </td>
     </tr>
     <tr class="counter">
         <td colspan="8" class="c">
-            razem już 1103 dni!
+            razem już <span id="counterSpan">1103</span> dni!
         </td>
     </tr>
     <tr class="filler"></tr>
     <tr class="weatherForecast">
-        <td class="c">teraz<br /><img src="https://openweathermap.org/img/w/10d.png" /><br />&nbsp;24°C</td><br />
-        <td class="c">15<sup style="font-size: medium">00</sup> <br /><img src="https://openweathermap.org/img/w/10d.png" /><br />&nbsp;24°C</td>
-        <td class="c">18<sup style="font-size: medium">00</sup> <br /><img src="https://openweathermap.org/img/w/10d.png" /><br />&nbsp;24°C</td>
-        <td class="c">21<sup style="font-size: medium">00</sup> <br /><img src="https://openweathermap.org/img/w/10d.png" /><br />&nbsp;24°C</td>
-        <td class="c">23<sup style="font-size: medium">00</sup> <br /><img src="https://openweathermap.org/img/w/10d.png" /><br />&nbsp;&nbsp;-4°C</td>
-        <td class="c">2<sup style="font-size: medium">00</sup>  <br /><img src="https://openweathermap.org/img/w/10d.png" /><br />&nbsp;24°C</td>
-        <td class="c">5<sup style="font-size: medium">00</sup>  <br /><img src="https://openweathermap.org/img/w/10d.png" /><br />&nbsp;24°C</td>
-        <td class="c">8<sup style="font-size: medium">00</sup>  <br /><img src="https://openweathermap.org/img/w/10d.png" /><br />-24°C</td>
+        <td class="c">
+            teraz<br />
+            <img        class="forecastIcon"        data-index="0" src="https://openweathermap.org/img/w/10d.png" /><br />
+            &nbsp;<span class="forecastTemperature" data-index="0">-24</span>°C
+        </td>
+        <td class="c">
+            <span       class="forecastHourSpan"    data-index="1">15</span><sup style="font-size: medium">00</sup> <br />
+            <img        class="forecastIcon"        data-index="1" src="https://openweathermap.org/img/w/10d.png" /><br />
+            &nbsp;<span class="forecastTemperature" data-index="1">-24</span>°C
+        </td>
+        <td class="c">
+            <span       class="forecastHourSpan"    data-index="2">15</span><sup style="font-size: medium">00</sup> <br />
+            <img        class="forecastIcon"        data-index="2" src="https://openweathermap.org/img/w/10d.png" /><br />
+            &nbsp;<span class="forecastTemperature" data-index="2">-24</span>°C
+        </td>
+        <td class="c">
+            <span       class="forecastHourSpan"    data-index="3">15</span><sup style="font-size: medium">00</sup> <br />
+            <img        class="forecastIcon"        data-index="3" src="https://openweathermap.org/img/w/10d.png" /><br />
+            &nbsp;<span class="forecastTemperature" data-index="3">-24</span>°C
+        </td>
+        <td class="c">
+            <span       class="forecastHourSpan"    data-index="4">15</span><sup style="font-size: medium">00</sup> <br />
+            <img        class="forecastIcon"        data-index="4" src="https://openweathermap.org/img/w/10d.png" /><br />
+            &nbsp;<span class="forecastTemperature" data-index="4">-24</span>°C
+        </td>
+        <td class="c">
+            <span       class="forecastHourSpan"    data-index="5">15</span><sup style="font-size: medium">00</sup> <br />
+            <img        class="forecastIcon"        data-index="5" src="https://openweathermap.org/img/w/10d.png" /><br />
+            &nbsp;<span class="forecastTemperature" data-index="5">-24</span>°C
+        </td>
+        <td class="c">
+            <span       class="forecastHourSpan"    data-index="6">15</span><sup style="font-size: medium">00</sup> <br />
+            <img        class="forecastIcon"        data-index="6" src="https://openweathermap.org/img/w/10d.png" /><br />
+            &nbsp;<span class="forecastTemperature" data-index="6">-24</span>°C
+        </td>
+        <td class="c">
+            <span       class="forecastHourSpan"    data-index="7">15</span><sup style="font-size: medium">00</sup> <br />
+            <img        class="forecastIcon"        data-index="7" src="https://openweathermap.org/img/w/10d.png" /><br />
+            &nbsp;<span class="forecastTemperature" data-index="7">-24</span>°C
+        </td>
     </tr>
     <tr class="filler"></tr>
 </table>
@@ -223,7 +255,7 @@ function padSpace(x){
 var startDayOfTable=3; //here logic must be applied
 for (i=1; i<=28; i++){
     var dayOfMonth=startDayOfTable+i; //here logic must be applied
-    $("[data-index='"+i+"'] .dayNumber").html(padSpace(dayOfMonth))
+    $("#calendarTable td[data-index='"+i+"'] .dayNumber").html(padSpace(dayOfMonth))
 }
 
 </script>

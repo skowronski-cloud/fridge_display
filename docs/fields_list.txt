@@ -1,0 +1,19 @@
+#weatherDetailsConditions
+#weatherDetailsTemperature
+#weatherDetailsPM10
+#weatherDetailsPressure
+#weatherDetailsHumidity
+#weatherDetailsSunrise
+#weatherDetailsSunset
+
+#clockSpan
+#counterSpan
+
+.forecastHourSpan    [data-index=0..7]
+img.forecastIcon     [data-index=0..7]
+.forecastTemperature [data-index=0..7]
+
+
+#calendarTable td -> .pastDay / .currentDay / .freeDay
+#calendarTable td [data-index=1..28]
+#calendarTable td .dayNumber, .dayAgenda
