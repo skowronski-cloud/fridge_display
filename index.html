@@ -350,6 +350,24 @@ function updateAgenda(index, events){ //events is array of objects {hour, minute
 function isFree(date){
     if (date.getDay()==0 || date.getDay()==6) return true;
 
+    /*
+
+    1 stycznia – Nowy Rok,
+    6 stycznia – Święto Trzech Króli,
+    pierwszy dzień Wielkiej Nocy,
+    drugi dzień Wielkiej Nocy,
+    1 maja – Święto Państwowe,
+    3 maja – Święto Narodowe Trzeciego Maja,
+    pierwszy dzień Zielonych Świątek,
+    dzień Bożego Ciała,
+    15 sierpnia – Wniebowzięcie Najświętszej Maryi Panny,
+    1 listopada – Wszystkich Świętych,
+    11 listopada – Narodowe Święto Niepodległości,
+    25 grudnia – pierwszy dzień Bożego Narodzenia,
+    26 grudnia – drugi dzień Bożego Narodzenia.
+
+    */
+
     //TODO: bunch of other checks, possibly hardcoded list for Polish bank holidays
 
     return false;
@@ -367,7 +385,11 @@ function processWeatherForecast(){
 
 }
 function processCounter(){
+    const oneDay = 24*60*60*1000 // hours*minutes*seconds*milliseconds
+    const countFrom = new Date(2018,5,24)
+    const diffDays = Math.round(Math.abs((_today.getTime() - countFrom.getTime())/(oneDay)))
 
+    updateCounter(diffDays)        
 }
 function processCalendar(){
     $.get( "dynamic/cal.ics", function( data ) {
