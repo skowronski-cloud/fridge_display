@@ -16,5 +16,5 @@ img.forecastIcon     [data-index=0..7]
 
 
 #calendarTable td -> .pastDay / .currentDay / .freeDay
-#calendarTable td [data-index=1..28]
+#calendarTable td [data-index=0..20]
 #calendarTable td .dayNumber, .dayAgenda

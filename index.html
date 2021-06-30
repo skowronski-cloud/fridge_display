@@ -187,39 +187,39 @@
         <th>Niedziela</th>
     </tr>
     <tr>
-        <td data-index="1" class="pastDay"><div class="dayNumber"></div><div class="dayAgenda">
+        <td data-index="0" class="pastDay"><div class="dayNumber"></div><div class="dayAgenda">
             <span class="agendaTime">08:00</span> D: test 1<br />
         </div></td>
-        <td data-index="2" class="currentDay"><div class="dayNumber"></div><div class="dayAgenda">
+        <td data-index="1" class="currentDay"><div class="dayNumber"></div><div class="dayAgenda">
             <span class="agendaTime">08:00</span> D: test 1<br />
             <span class="agendaTime">08:00</span> D: test 1ddddd dddd<br />
             <span class="agendaTime">08:00</span> D: test 1<br />
             <span class="agendaTime">08:00</span> D: test 1<br />
             <span class="agendaTime">08:00</span> D: test 1<br />
         </div></td>
+        <td data-index="2" ><div class="dayNumber"></div><div class="dayAgenda"></div></td>
         <td data-index="3" ><div class="dayNumber"></div><div class="dayAgenda"></div></td>
         <td data-index="4" ><div class="dayNumber"></div><div class="dayAgenda"></div></td>
-        <td data-index="5" ><div class="dayNumber"></div><div class="dayAgenda"></div></td>
+        <td data-index="5"  class="freeDay"><div class="dayNumber"></div><div class="dayAgenda"></div></td>
         <td data-index="6"  class="freeDay"><div class="dayNumber"></div><div class="dayAgenda"></div></td>
-        <td data-index="7"  class="freeDay"><div class="dayNumber"></div><div class="dayAgenda"></div></td>
     </tr>
     <tr>
+        <td data-index="7" ><div class="dayNumber"></div><div class="dayAgenda"></div></td>
         <td data-index="8" ><div class="dayNumber"></div><div class="dayAgenda"></div></td>
         <td data-index="9" ><div class="dayNumber"></div><div class="dayAgenda"></div></td>
         <td data-index="10"><div class="dayNumber"></div><div class="dayAgenda"></div></td>
-        <td data-index="11"><div class="dayNumber"></div><div class="dayAgenda"></div></td>
-        <td data-index="12" class="freeDay"><div class="dayNumber"></div><div class="dayAgenda">
+        <td data-index="11" class="freeDay"><div class="dayNumber"></div><div class="dayAgenda">
             <span class="agendaTime">08:00</span> D: test 1<br />
             <span class="agendaTime">08:00</span> D: test 1<br />
             <span class="agendaTime">08:00</span> D: test 1<br />
         </div></td>
+        <td data-index="12" class="freeDay"><div class="dayNumber"></div><div class="dayAgenda"></div></td>
         <td data-index="13" class="freeDay"><div class="dayNumber"></div><div class="dayAgenda"></div></td>
-        <td data-index="14" class="freeDay"><div class="dayNumber"></div><div class="dayAgenda"></div></td>
     </tr>
     <tr>
+        <td data-index="14"><div class="dayNumber"></div><div class="dayAgenda"></div></td>
         <td data-index="15"><div class="dayNumber"></div><div class="dayAgenda"></div></td>
-        <td data-index="16"><div class="dayNumber"></div><div class="dayAgenda"></div></td>
-        <td data-index="17" class="freeDay"><div class="dayNumber"></div><div class="dayAgenda">
+        <td data-index="16" class="freeDay"><div class="dayNumber"></div><div class="dayAgenda">
             <span class="agendaTime">08:00</span> D: test 1<br />
             <span class="agendaTime">08:00</span> D: test 1<br />
             <span class="agendaTime">08:00</span> D: test 1<br />
@@ -228,7 +228,7 @@
             <span class="agendaTime">08:00</span> D: test 1<br />
             <span class="agendaTime">08:00</span> D: test 1<br />
         </div></td>
-        <td data-index="18"><div class="dayNumber"></div><div class="dayAgenda">
+        <td data-index="17"><div class="dayNumber"></div><div class="dayAgenda">
             <span class="agendaTime">08:00</span> D: test 1<br />
             <span class="agendaTime">08:00</span> D: test 1<br />
             <span class="agendaTime">08:00</span> D: test 1<br />
@@ -237,9 +237,9 @@
             <span class="agendaTime">08:00</span> D: test 1<br />
             <span class="agendaTime">08:00</span> D: test 1<br />
         </div></td>
-        <td data-index="19"><div class="dayNumber"></div><div class="dayAgenda"></div></td>
+        <td data-index="18"><div class="dayNumber"></div><div class="dayAgenda"></div></td>
+        <td data-index="19" class="freeDay"><div class="dayNumber"></div><div class="dayAgenda"></div></td>
         <td data-index="20" class="freeDay"><div class="dayNumber"></div><div class="dayAgenda"></div></td>
-        <td data-index="21" class="freeDay"><div class="dayNumber"></div><div class="dayAgenda"></div></td>
     </tr>
 </table>
 
@@ -251,6 +251,15 @@ function padZero(x){
 }
 function padSpace(x){
     if (x<10) return "&nbsp;"+x; else return x;
+}
+
+function todayPlusDays(days){
+    var dateNew = new Date(_today)
+    dateNew.setDate(_today.getDate() + days)
+    return dateNew
+}
+function isToday(day){
+    return day.getTime()==_today.getTime()
 }
 </script>
 
@@ -281,44 +290,44 @@ function updateWeatherDetailsSunset(hour, minute){
 }
 
 function updateClock(hour, minute, second){
-    $("#clockSpan").text(padSpace(hour)+":"+padZero(minute)+":"+padZero(second))
+    $("#clockSpan").html(padSpace(hour)+":"+padZero(minute)+":"+padZero(second))
 }
 function updateCounter(days){
     $("#counterSpan").text(days)
 }
 
-function uopdateForecast(index, hourUTC, icon, temperature){
+function updateForecast(index, hourUTC, icon, temperature){
     var hour = (hourUTC+1)%24; //TODO:  +1 should be fixed
     if (index>0) {
-        $(".forecastHourSpan[data-index='"+index"']").text(hour)
+        $(".forecastHourSpan[data-index='"+index+"']").text(hour)
     }
-    $(".forecastIcon[data-index='"+index"']").attr("src","https://openweathermap.org/img/w/"+icon+".png")
-    $(".forecastTemperature[data-index='"+index"']").text(temperature)
+    $(".forecastIcon[data-index='"+index+"']").attr("src","https://openweathermap.org/img/w/"+icon+".png")
+    $(".forecastTemperature[data-index='"+index+"']").text(temperature)
 }
 
 function updateDay(index, number, isPast, isCurrent, isFree){
-    var tdObject = $("#calendarTable td[data-index='"+index"']")
+    var tdObject = $("#calendarTable td[data-index='"+index+"']")
     
-    $(tdObject).child(".dayNumber").text(padSpace(number))
+    $(tdObject).children(".dayNumber").html(padSpace(number))
 
     $(tdObject).removeClass("pastDay")
     $(tdObject).removeClass("currentDay")
     $(tdObject).removeClass("freeDay")
 
     if (isPast){
-        $(tdObject).addClas("pastDay")
+        $(tdObject).addClass("pastDay")
     }
     else if (isCurrent) {
-        $(tdObject).addClas("currentDay")
+        $(tdObject).addClass("currentDay")
     }
 
     if (isFree) {
-        $(tdObject).addClas("freeDay")
+        $(tdObject).addClass("freeDay")
     }
 }
 
 function updateAgenda(index, events){ //events is array of objects {hour, minute, text}
-    var divObject = $("#calendarTable td[data-index='"+index"'] .dayAgenda")
+    var divObject = $("#calendarTable td[data-index='"+index+"'] .dayAgenda")
     $(divObject).html("")
 
     for (var i=0; i<events.length; i++){
@@ -329,12 +338,54 @@ function updateAgenda(index, events){ //events is array of objects {hour, minute
 </script>
 
 <script type="text/javascript">
-var startDayOfTable=3; //here logic must be applied
-for (var i=1; i<=28; i++){
-    var dayOfMonth=startDayOfTable+i; //here logic must be applied
-    $("#calendarTable td[data-index='"+i+"'] .dayNumber").html(padSpace(dayOfMonth))
+function isFree(date){
+    if (date.getDay()==0 || date.getDay()==6) return true;
+
+    //TODO: bunch of other checks, possibly hardcoded list for Polish bank holidays
+
+    return false;
+}
+</script>
+
+<script type="text/javascript">
+var _today  = new Date();
+//_today.setDate(_today.getDate()+4) //testing
+
+function processCurrentConditions(){
+
+}
+function processWeatherForecast(){
+
+}
+function processCounter(){
+
+}
+function processCalendar(){
+    var offset = _today.getDay()-1;
+    if (offset<0) offset=6;
+    for (var i=0; i<21; i++){
+        //function updateDay(index, number, isPast, isCurrent, isFree){
+        var day = todayPlusDays(i-offset)
+        updateDay(i, day.getDate(), day<_today, isToday(day), isFree(day))
+    }
+
 }
 
+
+
+</script>
+
+<script type="text/javascript">
+function processEverything(){
+    processCurrentConditions()
+    processWeatherForecast()
+    processCounter()
+    processCalendar()
+}
+
+$(function() {
+    processEverything()
+})
 </script>
 
 </body>
