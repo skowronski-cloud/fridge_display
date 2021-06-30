@@ -6,6 +6,7 @@
 
     <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,400i,700,700i&amp;subset=latin-ext" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Ubuntu:400,400i,700,700i&amp;subset=latin-ext" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu+Condensed:400,400i,700,700i&amp;subset=latin-ext" rel="stylesheet">
     
 </head>
 <body>
@@ -69,6 +70,7 @@
 
     }
     .dayAgenda {
+        font-family: 'Ubuntu Condensed';
         bottom: 5px;
         left:   5px;
     }
@@ -243,7 +245,8 @@
     </tr>
 </table>
 
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="vendor/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="vendor/ical.min.js"></script>
 
 <script type="text/javascript">
 function padZero(x){
@@ -260,6 +263,10 @@ function todayPlusDays(days){
 }
 function isToday(day){
     return day.getTime()==_today.getTime()
+}
+
+function sameDate(a, b){
+    return a.toISOString().substring(0,10) == b.toISOString().substring(0,10)
 }
 </script>
 
@@ -326,13 +333,15 @@ function updateDay(index, number, isPast, isCurrent, isFree){
     }
 }
 
-function updateAgenda(index, events){ //events is array of objects {hour, minute, text}
+function updateAgenda(index, events){ //events is array of objects {hour, minute, desc}
     var divObject = $("#calendarTable td[data-index='"+index+"'] .dayAgenda")
     $(divObject).html("")
 
     for (var i=0; i<events.length; i++){
-        var event = evenrts[i]
-        $(divObject).append("<span class='agendaTime'>"+padZero(event.hour)+":"+padZero(event.minute)+"</span> "+event.text+"<br />")
+        var event = events[i]
+        var desc = event.desc.substring(0,30)
+
+        $(divObject).append("<span class='agendaTime'>"+padZero(event.hour)+":"+padZero(event.minute)+"</span> "+desc+"<br />")
     }
 }
 </script>
@@ -361,14 +370,51 @@ function processCounter(){
 
 }
 function processCalendar(){
-    var offset = _today.getDay()-1;
-    if (offset<0) offset=6;
-    for (var i=0; i<21; i++){
-        //function updateDay(index, number, isPast, isCurrent, isFree){
-        var day = todayPlusDays(i-offset)
-        updateDay(i, day.getDate(), day<_today, isToday(day), isFree(day))
-    }
+    $.get( "dynamic/cal.ics", function( data ) {
+        var offset = _today.getDay()-1;
+        if (offset<0) offset=6;
 
+        var jcalData = ICAL.parse(data);
+        var vcalendar = new ICAL.Component(jcalData);
+        var events = vcalendar.getAllSubcomponents();
+
+        for (var i=0; i<21; i++){
+            const day = todayPlusDays(i-offset)
+            updateDay(i, day.getDate(), day<_today, isToday(day), isFree(day))
+            var eventsToAdd=[]
+
+            for (var e=0; e<events.length; e++){
+                var evt = events[e]
+                var forThisDay = false
+                var hour = 0
+                var min  = 0 
+                var desc = "--"
+
+                for (var p=0; p<evt.jCal[1].length; p++){
+                    var propName  = evt.jCal[1][p][0]
+                    var propValue = evt.jCal[1][p][3]
+
+                    if (propName=="dtstart") {
+                        if (propValue.indexOf(day.toISOString().substring(0,10))==0){
+                            forThisDay = true;
+                            eventDate = new Date(propValue)
+                            hour = eventDate.getHours()
+                            min  = eventDate.getMinutes()
+                        }
+                    }
+                    if (propName=="summary") {
+                        desc = evt.jCal[1][p][3]
+                    }
+                }
+
+                if (forThisDay) {
+                    eventsToAdd.push({"hour":hour, "minute": min, "desc": desc})
+                }
+            }
+
+            updateAgenda(i, eventsToAdd)
+        }
+    })  
 }
 
 
