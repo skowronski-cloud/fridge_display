@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Fridge Display</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,400i,700,700i&amp;subset=latin-ext" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu:400,400i,700,700i&amp;subset=latin-ext" rel="stylesheet">
+    
+</head>
+<body>
+
+<style type="text/css">
+    body{
+        background: black;
+        color:  white;
+
+        padding: 10px;
+        padding-top: 50px;
+
+        font-family: 'Ubuntu';
+    }
+
+    #calendarTable td{
+        width:  110px;
+        height: 200px;
+    }
+
+    #calendarTable td, #calendarTable th{
+        border: 4px solid #444;
+    }
+    #calendarTable, #topLayout {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    .pastDay {
+        background: #444;
+    }
+    .pastDay .dayNumber, .pastDay .dayAgenda {
+        color: #111;
+    }
+
+    .currentDay {
+        background: #499;
+    }
+
+    .freeDay .dayNumber{
+        color:  #422;
+    }
+
+    .dayNumber{
+        font-weight: bold;
+        font-family: 'Ubuntu Mono';
+        font-size: 120px;
+        color:  #444;
+    }
+
+    #calendarTable td {
+        position: relative;
+
+    }
+    .dayNumber, .dayAgenda {
+        position: absolute;
+    }
+    .dayNumber {
+        top:  5px;
+        left: 5px;
+
+    }
+    .dayAgenda {
+        bottom: 5px;
+        left:   5px;
+    }
+    .agendaTime {
+        font-weight: bold;
+    }
+
+    .l { text-align: left; }
+    .r { text-align: right; }
+    .c { text-align: center; }
+
+    .weatherDetails {
+        font-size: 48px;
+    }
+    .weatherDetails td{
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .clock {
+        font-size: 128px;
+        font-weight: bold;
+        font-family: 'Ubuntu Mono';
+    }
+
+    .filler {
+        height: 20px;
+    }
+
+    .counter{
+        font-size: 32px;
+        color:  #606;
+    }
+
+    .weatherForecast {
+        font-size: 32px;
+    }
+    .weatherForecast td{
+        border: 4px solid #444;
+    }
+
+</style>
+<table id="topLayout">
+    <tr class="weatherDetails">
+        <td colspan="4" class="r">Clouds, 29°C</td>
+        <td colspan="4" class="l">PM10 1µg/m³</td>
+    </tr>
+    <tr class="weatherDetails">
+        <td colspan="4" class="r">986hPa, 40%</td>
+        <td colspan="4" class="l">4:34 - 20:53</td>
+    </tr>
+    <tr class="clock">
+        <td colspan="8" class="c">
+            12:38:18
+        </td>
+    </tr>
+    <tr class="counter">
+        <td colspan="8" class="c">
+            razem już 1103 dni!
+        </td>
+    </tr>
+    <tr class="filler"></tr>
+    <tr class="weatherForecast">
+        <td class="c">teraz<br /><img src="https://openweathermap.org/img/w/10d.png" /><br />&nbsp;24°C</td><br />
+        <td class="c">15<sup style="font-size: medium">00</sup> <br /><img src="https://openweathermap.org/img/w/10d.png" /><br />&nbsp;24°C</td>
+        <td class="c">18<sup style="font-size: medium">00</sup> <br /><img src="https://openweathermap.org/img/w/10d.png" /><br />&nbsp;24°C</td>
+        <td class="c">21<sup style="font-size: medium">00</sup> <br /><img src="https://openweathermap.org/img/w/10d.png" /><br />&nbsp;24°C</td>
+        <td class="c">23<sup style="font-size: medium">00</sup> <br /><img src="https://openweathermap.org/img/w/10d.png" /><br />&nbsp;&nbsp;-4°C</td>
+        <td class="c">2<sup style="font-size: medium">00</sup>  <br /><img src="https://openweathermap.org/img/w/10d.png" /><br />&nbsp;24°C</td>
+        <td class="c">5<sup style="font-size: medium">00</sup>  <br /><img src="https://openweathermap.org/img/w/10d.png" /><br />&nbsp;24°C</td>
+        <td class="c">8<sup style="font-size: medium">00</sup>  <br /><img src="https://openweathermap.org/img/w/10d.png" /><br />-24°C</td>
+    </tr>
+    <tr class="filler"></tr>
+</table>
+<br />
+<table id="calendarTable">
+    <tr>
+        <th>Poniedziałek</th>
+        <th>Wtorek</th>
+        <th>Środa</th>
+        <th>Czwartek</th>
+        <th>Piątek</th>
+        <th>Sobota</th>
+        <th>Niedziela</th>
+    </tr>
+    <tr>
+        <td data-index="1" class="pastDay"><div class="dayNumber"></div><div class="dayAgenda">
+            <span class="agendaTime">08:00</span> D: test 1<br />
+        </div></td>
+        <td data-index="2" class="currentDay"><div class="dayNumber"></div><div class="dayAgenda">
+            <span class="agendaTime">08:00</span> D: test 1<br />
+            <span class="agendaTime">08:00</span> D: test 1ddddd dddd<br />
+            <span class="agendaTime">08:00</span> D: test 1<br />
+            <span class="agendaTime">08:00</span> D: test 1<br />
+            <span class="agendaTime">08:00</span> D: test 1<br />
+        </div></td>
+        <td data-index="3" ><div class="dayNumber"></div><div class="dayAgenda"></div></td>
+        <td data-index="4" ><div class="dayNumber"></div><div class="dayAgenda"></div></td>
+        <td data-index="5" ><div class="dayNumber"></div><div class="dayAgenda"></div></td>
+        <td data-index="6"  class="freeDay"><div class="dayNumber"></div><div class="dayAgenda"></div></td>
+        <td data-index="7"  class="freeDay"><div class="dayNumber"></div><div class="dayAgenda"></div></td>
+    </tr>
+    <tr>
+        <td data-index="8" ><div class="dayNumber"></div><div class="dayAgenda"></div></td>
+        <td data-index="9" ><div class="dayNumber"></div><div class="dayAgenda"></div></td>
+        <td data-index="10"><div class="dayNumber"></div><div class="dayAgenda"></div></td>
+        <td data-index="11"><div class="dayNumber"></div><div class="dayAgenda"></div></td>
+        <td data-index="12" class="freeDay"><div class="dayNumber"></div><div class="dayAgenda">
+            <span class="agendaTime">08:00</span> D: test 1<br />
+            <span class="agendaTime">08:00</span> D: test 1<br />
+            <span class="agendaTime">08:00</span> D: test 1<br />
+        </div></td>
+        <td data-index="13" class="freeDay"><div class="dayNumber"></div><div class="dayAgenda"></div></td>
+        <td data-index="14" class="freeDay"><div class="dayNumber"></div><div class="dayAgenda"></div></td>
+    </tr>
+    <tr>
+        <td data-index="15"><div class="dayNumber"></div><div class="dayAgenda"></div></td>
+        <td data-index="16"><div class="dayNumber"></div><div class="dayAgenda"></div></td>
+        <td data-index="17" class="freeDay"><div class="dayNumber"></div><div class="dayAgenda">
+            <span class="agendaTime">08:00</span> D: test 1<br />
+            <span class="agendaTime">08:00</span> D: test 1<br />
+            <span class="agendaTime">08:00</span> D: test 1<br />
+            <span class="agendaTime">08:00</span> D: test 1<br />
+            <span class="agendaTime">08:00</span> D: test 1<br />
+            <span class="agendaTime">08:00</span> D: test 1<br />
+            <span class="agendaTime">08:00</span> D: test 1<br />
+        </div></td>
+        <td data-index="18"><div class="dayNumber"></div><div class="dayAgenda">
+            <span class="agendaTime">08:00</span> D: test 1<br />
+            <span class="agendaTime">08:00</span> D: test 1<br />
+            <span class="agendaTime">08:00</span> D: test 1<br />
+            <span class="agendaTime">08:00</span> D: test 1<br />
+            <span class="agendaTime">08:00</span> D: test 1<br />
+            <span class="agendaTime">08:00</span> D: test 1<br />
+            <span class="agendaTime">08:00</span> D: test 1<br />
+        </div></td>
+        <td data-index="19"><div class="dayNumber"></div><div class="dayAgenda"></div></td>
+        <td data-index="20" class="freeDay"><div class="dayNumber"></div><div class="dayAgenda"></div></td>
+        <td data-index="21" class="freeDay"><div class="dayNumber"></div><div class="dayAgenda"></div></td>
+    </tr>
+</table>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script type="text/javascript">
+function padZero(x){
+    if (x<10) return "0"+x; else return x;
+}
+function padSpace(x){
+    if (x<10) return "&nbsp;"+x; else return x;
+}
+
+var startDayOfTable=3; //here logic must be applied
+for (i=1; i<=28; i++){
+    var dayOfMonth=startDayOfTable+i; //here logic must be applied
+    $("[data-index='"+i+"'] .dayNumber").html(padSpace(dayOfMonth))
+}
+
+</script>
+
+</body>
+</html>
