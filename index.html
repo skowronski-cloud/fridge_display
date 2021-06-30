@@ -384,6 +384,11 @@ function processCurrentConditions(){
 function processWeatherForecast(){
 
 }
+function clockTick(){
+    const now = new Date();
+    updateClock(now.getHours(), now.getMinutes(), now.getSeconds())
+    setTimeout(clockTick, 500)
+}
 function processCounter(){
     const oneDay = 24*60*60*1000 // hours*minutes*seconds*milliseconds
     const countFrom = new Date(2018,5,24)
@@ -447,6 +452,7 @@ function processCalendar(){
 function processEverything(){
     processCurrentConditions()
     processWeatherForecast()
+    clockTick()
     processCounter()
     processCalendar()
 }
