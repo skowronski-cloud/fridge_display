@@ -382,7 +382,13 @@ function processCurrentConditions(){
 
 }
 function processWeatherForecast(){
-
+    $.get( "dynamic/forecast.json?"+Date.now(), function( data ) {
+        for (var i=0; i<8; i++){
+            //function updateForecast(index, hourUTC, icon, temperature){
+            var date=new Date(data.list[i].dt_txt.replace(' ', 'T')) //replace per https://stackoverflow.com/a/13363791
+            updateForecast(i, date.getHours(), data.list[i].weather[0].icon, parseInt(data.list[i].main.temp))
+        }
+    })
 }
 function clockTick(){
     const now = new Date();

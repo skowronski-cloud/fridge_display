@@ -1,1 +1,2 @@
 ical.ics -> vCalendar file
+forecast.json -> response from openweathermap.org API, check forecast.json.example
