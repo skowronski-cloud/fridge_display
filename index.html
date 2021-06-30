@@ -115,21 +115,21 @@
 </style>
 <table id="topLayout">
     <tr class="weatherDetails">
-        <td colspan="4" class="r"><img id="weatherDetailsIcon" src="https://openweathermap.org/img/w/10d.png" /> <span id="weatherDetailsConditions">Clouds</span>, <span id="weatherDetailsTemperature">29</span>°C</td>
-        <td colspan="4" class="l"><span style="font-size: 32px">PM10</span> <span id="weatherDetailsPM10">1</span>µg/m³</td>
+        <td colspan="4" class="r"><img id="weatherDetailsIcon" src="https://openweathermap.org/img/w/10d.png" /> <span id="weatherDetailsConditions">N/A</span>, <span id="weatherDetailsTemperature">-99</span>°C</td>
+        <td colspan="4" class="l"><span style="font-size: 32px">PM10</span> <span id="weatherDetailsPM10">999</span> µg/m³</td>
     </tr>
     <tr class="weatherDetails">
-        <td colspan="4" class="r"><span id="weatherDetailsPressure">986</span> hPa, <span id="weatherDetailsHumidity">40</span>%</td>
-        <td colspan="4" class="l"><span id="weatherDetailsSunrise">4:34</span> - <span id="weatherDetailsSunset">20:53</span></td>
+        <td colspan="4" class="r"><span id="weatherDetailsPressure">9999</span> hPa, <span id="weatherDetailsHumidity">40</span>%</td>
+        <td colspan="4" class="l"><span id="weatherDetailsSunrise">9:99</span> - <span id="weatherDetailsSunset">99:99</span></td>
     </tr>
     <tr class="clock">
         <td colspan="8" class="c">
-            <span id="clockSpan">12:38:18</span>
+            <span id="clockSpan">99:88:77</span>
         </td>
     </tr>
     <tr class="counter">
         <td colspan="8" class="c">
-            razem już <span id="counterSpan">1103</span> dni!
+            razem już <span id="counterSpan">99999</span> dni!
         </td>
     </tr>
     <tr class="filler"></tr>
@@ -140,29 +140,29 @@
             &nbsp;<span class="forecastTemperature" data-index="0">-24</span>°C
         </td>
         <td class="c">
-            <span       class="forecastHourSpan"    data-index="1">15</span><sup style="font-size: medium">00</sup> <br />
+            <span       class="forecastHourSpan"    data-index="1">33</span><sup style="font-size: medium">00</sup> <br />
             <img        class="forecastIcon"        data-index="1" src="https://openweathermap.org/img/w/10d.png" /><br />
-            &nbsp;<span class="forecastTemperature" data-index="1">-24</span>°C
+            &nbsp;<span class="forecastTemperature" data-index="1">-99</span>°C
         </td>
         <td class="c">
-            <span       class="forecastHourSpan"    data-index="2">15</span><sup style="font-size: medium">00</sup> <br />
+            <span       class="forecastHourSpan"    data-index="2">44</span><sup style="font-size: medium">00</sup> <br />
             <img        class="forecastIcon"        data-index="2" src="https://openweathermap.org/img/w/10d.png" /><br />
-            &nbsp;<span class="forecastTemperature" data-index="2">-24</span>°C
+            &nbsp;<span class="forecastTemperature" data-index="2">-99</span>°C
         </td>
         <td class="c">
-            <span       class="forecastHourSpan"    data-index="3">15</span><sup style="font-size: medium">00</sup> <br />
+            <span       class="forecastHourSpan"    data-index="3">55</span><sup style="font-size: medium">00</sup> <br />
             <img        class="forecastIcon"        data-index="3" src="https://openweathermap.org/img/w/10d.png" /><br />
-            &nbsp;<span class="forecastTemperature" data-index="3">-24</span>°C
+            &nbsp;<span class="forecastTemperature" data-index="3">-99</span>°C
         </td>
         <td class="c">
-            <span       class="forecastHourSpan"    data-index="4">15</span><sup style="font-size: medium">00</sup> <br />
+            <span       class="forecastHourSpan"    data-index="4">66</span><sup style="font-size: medium">00</sup> <br />
             <img        class="forecastIcon"        data-index="4" src="https://openweathermap.org/img/w/10d.png" /><br />
-            &nbsp;<span class="forecastTemperature" data-index="4">-24</span>°C
+            &nbsp;<span class="forecastTemperature" data-index="4">-99</span>°C
         </td>
         <td class="c">
-            <span       class="forecastHourSpan"    data-index="5">15</span><sup style="font-size: medium">00</sup> <br />
+            <span       class="forecastHourSpan"    data-index="5">77</span><sup style="font-size: medium">00</sup> <br />
             <img        class="forecastIcon"        data-index="5" src="https://openweathermap.org/img/w/10d.png" /><br />
-            &nbsp;<span class="forecastTemperature" data-index="5">-24</span>°C
+            &nbsp;<span class="forecastTemperature" data-index="5">-99</span>°C
         </td>
         <td class="c">
             <span       class="forecastHourSpan"    data-index="6">15</span><sup style="font-size: medium">00</sup> <br />
@@ -278,16 +278,25 @@ function updateWeatherDetailsConditions(conditions){
     $("#weatherDetailsConditions").text(conditions)
 }
 function updateWeatherDetailsTemperature(temperature){
-    $("#weatherDetailsTemperature").text(temperature)
+    $("#weatherDetailsTemperature").text(parseInt(temperature))
 }
 function updateWeatherDetailsPM10(PM10){
-    $("#weatherDetailsPM10").text(PM10)
+    $("#weatherDetailsPM10").text(parseInt(PM10))
+    if (PM10>=150){
+        $("#weatherDetailsPM10").css("color","red")
+    } 
+    else if (PM10>=75){
+        $("#weatherDetailsPM10").css("color","orange")
+    } 
+    else {
+        $("#weatherDetailsPM10").css("color","default")
+    }
 }
 function updateWeatherDetailsPressure(pressure){
-    $("#weatherDetailsPressure").text(pressure)
+    $("#weatherDetailsPressure").text(parseInt(pressure/100))
 }
 function updateWeatherDetailsHumidity(humidity){
-    $("#weatherDetailsHumidity").text(humidity)
+    $("#weatherDetailsHumidity").text(parseInt(humidity))
 }
 function updateWeatherDetailsSunrise(hour, minute){
     $("#weatherDetailsSunrise").text(hour+":"+padZero(minute))
@@ -376,18 +385,34 @@ function isFree(date){
 
 <script type="text/javascript">
 var _today  = new Date();
-//_today.setDate(_today.getDate()+4) //testing
+//_today.setDate(_today.getDate()+4) //for testing
 
 function processCurrentConditions(){
-
+    $.get( "dynamic/influx.json?"+Date.now(), function( data ) {
+        updateWeatherDetailsTemperature(data["temp"])
+        updateWeatherDetailsPM10(data["pm10"])
+        updateWeatherDetailsPressure(data["pressure"])
+        updateWeatherDetailsHumidity(data["humidity"])
+    })
 }
 function processWeatherForecast(){
     $.get( "dynamic/forecast.json?"+Date.now(), function( data ) {
+        updateWeatherDetailsConditions(data.list[0].weather[0].main)
+        updateWeatherDetailsIcon(data.list[0].weather[0].icon)
+
         for (var i=0; i<8; i++){
-            //function updateForecast(index, hourUTC, icon, temperature){
             var date=new Date(data.list[i].dt_txt.replace(' ', 'T')) //replace per https://stackoverflow.com/a/13363791
             updateForecast(i, date.getHours(), data.list[i].weather[0].icon, parseInt(data.list[i].main.temp))
         }
+    })
+}
+function processSunRiseSet(){
+    $.get("dynamic/sun.json?"+Date.now(), function( data ) {
+        var dateSunrise=new Date(data.results["sunrise"])
+        var dateSunset =new Date(data.results["sunset"])
+
+        updateWeatherDetailsSunrise(dateSunrise.getHours(), dateSunrise.getMinutes())
+        updateWeatherDetailsSunset( dateSunset.getHours(),  dateSunset.getMinutes())
     })
 }
 function clockTick(){
@@ -403,7 +428,7 @@ function processCounter(){
     updateCounter(diffDays)        
 }
 function processCalendar(){
-    $.get( "dynamic/cal.ics", function( data ) {
+    $.get( "dynamic/cal.ics?"+Date.now(), function( data ) {
         var offset = _today.getDay()-1;
         if (offset<0) offset=6;
 
@@ -458,6 +483,7 @@ function processCalendar(){
 function processEverything(){
     processCurrentConditions()
     processWeatherForecast()
+    processSunRiseSet()
     clockTick()
     processCounter()
     processCalendar()

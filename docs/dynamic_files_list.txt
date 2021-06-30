@@ -1,2 +1,4 @@
 ical.ics -> vCalendar file
 forecast.json -> response from openweathermap.org API, check forecast.json.example
+dynamic.json -> special json object:  {"temp":"27.784999999999997","pm10":"1.1925000000000001","pressure":"98496.0975","humidity":"44.074999999999996"}
+sun.json -> response from api.sunrise-sunset.org API
