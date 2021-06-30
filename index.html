@@ -113,7 +113,7 @@
 </style>
 <table id="topLayout">
     <tr class="weatherDetails">
-        <td colspan="4" class="r"><span id="weatherDetailsConditions">Clouds</span>, <span id="weatherDetailsTemperature">29</span>°C</td>
+        <td colspan="4" class="r"><img id="weatherDetailsIcon" src="https://openweathermap.org/img/w/10d.png" /> <span id="weatherDetailsConditions">Clouds</span>, <span id="weatherDetailsTemperature">29</span>°C</td>
         <td colspan="4" class="l"><span style="font-size: 32px">PM10</span> <span id="weatherDetailsPM10">1</span>µg/m³</td>
     </tr>
     <tr class="weatherDetails">
@@ -244,6 +244,7 @@
 </table>
 
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
 <script type="text/javascript">
 function padZero(x){
     if (x<10) return "0"+x; else return x;
@@ -251,9 +252,85 @@ function padZero(x){
 function padSpace(x){
     if (x<10) return "&nbsp;"+x; else return x;
 }
+</script>
 
+<script type="text/javascript">
+function updateWeatherDetailsIcon(icon){
+    $("#weatherDetailsIcon").attr("src","https://openweathermap.org/img/w/"+icon+".png");
+}
+function updateWeatherDetailsConditions(conditions){
+    $("#weatherDetailsConditions").text(conditions)
+}
+function updateWeatherDetailsTemperature(temperature){
+    $("#weatherDetailsTemperature").text(temperature)
+}
+function updateWeatherDetailsPM10(PM10){
+    $("#weatherDetailsPM10").text(PM10)
+}
+function updateWeatherDetailsPressure(pressure){
+    $("#weatherDetailsPressure").text(pressure)
+}
+function updateWeatherDetailsHumidity(humidity){
+    $("#weatherDetailsHumidity").text(humidity)
+}
+function updateWeatherDetailsSunrise(hour, minute){
+    $("#weatherDetailsSunrise").text(hour+":"+padZero(minute))
+}
+function updateWeatherDetailsSunset(hour, minute){
+    $("#weatherDetailsSunset").text(hour+":"+padZero(minute))
+}
+
+function updateClock(hour, minute, second){
+    $("#clockSpan").text(padSpace(hour)+":"+padZero(minute)+":"+padZero(second))
+}
+function updateCounter(days){
+    $("#counterSpan").text(days)
+}
+
+function uopdateForecast(index, hourUTC, icon, temperature){
+    var hour = (hourUTC+1)%24; //TODO:  +1 should be fixed
+    if (index>0) {
+        $(".forecastHourSpan[data-index='"+index"']").text(hour)
+    }
+    $(".forecastIcon[data-index='"+index"']").attr("src","https://openweathermap.org/img/w/"+icon+".png")
+    $(".forecastTemperature[data-index='"+index"']").text(temperature)
+}
+
+function updateDay(index, number, isPast, isCurrent, isFree){
+    var tdObject = $("#calendarTable td[data-index='"+index"']")
+    
+    $(tdObject).child(".dayNumber").text(padSpace(number))
+
+    $(tdObject).removeClass("pastDay")
+    $(tdObject).removeClass("currentDay")
+    $(tdObject).removeClass("freeDay")
+
+    if (isPast){
+        $(tdObject).addClas("pastDay")
+    }
+    else if (isCurrent) {
+        $(tdObject).addClas("currentDay")
+    }
+
+    if (isFree) {
+        $(tdObject).addClas("freeDay")
+    }
+}
+
+function updateAgenda(index, events){ //events is array of objects {hour, minute, text}
+    var divObject = $("#calendarTable td[data-index='"+index"'] .dayAgenda")
+    $(divObject).html("")
+
+    for (var i=0; i<events.length; i++){
+        var event = evenrts[i]
+        $(divObject).append("<span class='agendaTime'>"+padZero(event.hour)+":"+padZero(event.minute)+"</span> "+event.text+"<br />")
+    }
+}
+</script>
+
+<script type="text/javascript">
 var startDayOfTable=3; //here logic must be applied
-for (i=1; i<=28; i++){
+for (var i=1; i<=28; i++){
     var dayOfMonth=startDayOfTable+i; //here logic must be applied
     $("#calendarTable td[data-index='"+i+"'] .dayNumber").html(padSpace(dayOfMonth))
 }

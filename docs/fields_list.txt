@@ -1,3 +1,4 @@
+#weatherDetailsIcon
 #weatherDetailsConditions
 #weatherDetailsTemperature
 #weatherDetailsPM10
