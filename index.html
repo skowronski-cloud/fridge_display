@@ -248,6 +248,11 @@
 <script type="text/javascript" src="vendor/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" src="vendor/ical.min.js"></script>
 
+<script>
+    window.tz_delta=2
+    window.tz_desc="+02:00"
+</script>
+
 <script type="text/javascript">
 function padZero(x){
     if (x<10) return "0"+x; else return x;
@@ -261,8 +266,20 @@ function todayPlusDays(days){
     dateNew.setDate(_today.getDate() + days)
     return dateNew
 }
+Date.prototype.addHours = function(h) {
+  this.setTime(this.getTime() + (h*60*60*1000));
+  return this;
+}
 function isToday(day){
-    return day.getTime()==_today.getTime()
+    return day.addHours(-window.tz_delta).getTime()==_today.getTime()
+}
+
+function fixTZ(hourUTC){
+    var fixed = (hourUTC-window.tz_delta)%24;
+    if (fixed<0) {
+        fixed=24+fixed;
+    }
+    return fixed
 }
 
 function sameDate(a, b){
@@ -313,7 +330,7 @@ function updateCounter(days){
 }
 
 function updateForecast(index, hourUTC, icon, temperature){
-    var hour = (hourUTC+1)%24; //TODO:  +1 should be fixed
+    var hour = fixTZ(hourUTC)
     if (index>0) {
         $(".forecastHourSpan[data-index='"+index+"']").text(hour)
     }
@@ -437,7 +454,7 @@ function processCalendar(){
         var events = vcalendar.getAllSubcomponents();
 
         for (var i=0; i<21; i++){
-            const day = todayPlusDays(i-offset)
+            const day = new Date(todayPlusDays(i-offset)).addHours(2)
             updateDay(i, day.getDate(), day<_today, isToday(day), isFree(day))
             var eventsToAdd=[]
 
@@ -447,7 +464,6 @@ function processCalendar(){
                 var hour = 0
                 var min  = 0 
                 var desc = "--"
-
                 for (var p=0; p<evt.jCal[1].length; p++){
                     var propName  = evt.jCal[1][p][0]
                     var propValue = evt.jCal[1][p][3]
@@ -455,7 +471,7 @@ function processCalendar(){
                     if (propName=="dtstart") {
                         if (propValue.indexOf(day.toISOString().substring(0,10))==0){
                             forThisDay = true;
-                            eventDate = new Date(propValue)
+                            var eventDate = new Date(propValue+window.tz_desc) //TODO: fix to read that property from evt object
                             hour = eventDate.getHours()
                             min  = eventDate.getMinutes()
                         }
@@ -469,6 +485,10 @@ function processCalendar(){
                     eventsToAdd.push({"hour":hour, "minute": min, "desc": desc})
                 }
             }
+
+            eventsToAdd.sort((a, b) => {
+                return (60*a.hour+a.minute) - (60*b.hour+b.minute) 
+            })
 
             updateAgenda(i, eventsToAdd)
         }
@@ -492,7 +512,7 @@ function processEverything(){
 $(function() {
     processEverything()
     setInterval(function(){ processEverything(); }, 1000*60);
-    
+
     setInterval(function(){ window.location.reload() }, 10800000) //reload every 3h to mitigate mem leaks
 })
 </script>
