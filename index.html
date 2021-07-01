@@ -271,7 +271,7 @@ Date.prototype.addHours = function(h) {
   return this;
 }
 function isToday(day){
-    return day.addHours(-window.tz_delta).getTime()==_today.getTime()
+    return day.getTime()==_today.getTime()
 }
 
 function fixTZ(hourUTC){
@@ -454,9 +454,11 @@ function processCalendar(){
         var events = vcalendar.getAllSubcomponents();
 
         for (var i=0; i<21; i++){
-            const day = new Date(todayPlusDays(i-offset)).addHours(2)
+            var day = new Date(todayPlusDays(i-offset))
             updateDay(i, day.getDate(), day<_today, isToday(day), isFree(day))
             var eventsToAdd=[]
+
+            day = new Date(day).addHours(2)
 
             for (var e=0; e<events.length; e++){
                 var evt = events[e]
@@ -464,6 +466,9 @@ function processCalendar(){
                 var hour = 0
                 var min  = 0 
                 var desc = "--"
+                var eventDate=new Date()
+                var dateRaw=""
+
                 for (var p=0; p<evt.jCal[1].length; p++){
                     var propName  = evt.jCal[1][p][0]
                     var propValue = evt.jCal[1][p][3]
@@ -471,9 +476,11 @@ function processCalendar(){
                     if (propName=="dtstart") {
                         if (propValue.indexOf(day.toISOString().substring(0,10))==0){
                             forThisDay = true;
-                            var eventDate = new Date(propValue+window.tz_desc) //TODO: fix to read that property from evt object
+                            dateRaw=propValue
+                            eventDate = new Date(propValue+window.tz_desc) //TODO: fix to read that property from evt object
                             hour = eventDate.getHours()
                             min  = eventDate.getMinutes()
+
                         }
                     }
                     if (propName=="summary") {
