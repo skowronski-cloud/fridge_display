@@ -458,7 +458,7 @@ function processCalendar(){
             updateDay(i, day.getDate(), day<_today, isToday(day), isFree(day))
             var eventsToAdd=[]
 
-            day = new Date(day).addHours(2)
+            day = new Date(day).addHours(window.tz_delta)
 
             for (var e=0; e<events.length; e++){
                 var evt = events[e]
@@ -467,7 +467,6 @@ function processCalendar(){
                 var min  = 0 
                 var desc = "--"
                 var eventDate=new Date()
-                var dateRaw=""
 
                 for (var p=0; p<evt.jCal[1].length; p++){
                     var propName  = evt.jCal[1][p][0]
@@ -476,7 +475,6 @@ function processCalendar(){
                     if (propName=="dtstart") {
                         if (propValue.indexOf(day.toISOString().substring(0,10))==0){
                             forThisDay = true;
-                            dateRaw=propValue
                             eventDate = new Date(propValue+window.tz_desc) //TODO: fix to read that property from evt object
                             hour = eventDate.getHours()
                             min  = eventDate.getMinutes()
@@ -508,6 +506,8 @@ function processCalendar(){
 
 <script type="text/javascript">
 function processEverything(){
+    _today  = new Date();
+    
     processCurrentConditions()
     processWeatherForecast()
     processSunRiseSet()
