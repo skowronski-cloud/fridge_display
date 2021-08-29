@@ -376,33 +376,54 @@ function updateAgenda(index, events){ //events is array of objects {hour, minute
 function isFree(date){
     if (date.getDay()==0 || date.getDay()==6) return true;
 
-    /*
+    var y=date.getYear()+1900
+    var m=date.getMonth()+1
+    var d=date.getDate()
 
-    1 stycznia – Nowy Rok,
-    6 stycznia – Święto Trzech Króli,
-    pierwszy dzień Wielkiej Nocy,
-    drugi dzień Wielkiej Nocy,
-    1 maja – Święto Państwowe,
-    3 maja – Święto Narodowe Trzeciego Maja,
-    pierwszy dzień Zielonych Świątek,
-    dzień Bożego Ciała,
-    15 sierpnia – Wniebowzięcie Najświętszej Maryi Panny,
-    1 listopada – Wszystkich Świętych,
-    11 listopada – Narodowe Święto Niepodległości,
-    25 grudnia – pierwszy dzień Bożego Narodzenia,
-    26 grudnia – drugi dzień Bożego Narodzenia.
+    var fixedHolidays=[
+        {Month:1,  Day:1,  Desc: "Nowy Rok"},
+        {Month:1,  Day:6,  Desc: "Święto Trzech Króli"},
+        {Month:5,  Day:1,  Desc: "Święto Państwowe 1 Maja"},
+        {Month:5,  Day:3,  Desc: "Święto Narodowe Trzeciego Maja"},
+        {Month:8,  Day:15, Desc: "Święto Wojska Polskiego"},
+        {Month:11, Day:1,  Desc: "Wszystkich Świętych"},
+        {Month:11, Day:11, Desc: "Narodowe Święto Niepodległości"},
+        {Month:12, Day:25, Desc: "Boże Narodzenie"},
+        {Month:12, Day:26, Desc: "Boże Narodzenie"},
+    ]
+    var variableHolidays=[
+        {Year: 2022, Month:4,  Day:17, Desc:"Wielkanoc"},
+        {Year: 2022, Month:4,  Day:18, Desc:"Poniedziałek Wielkanocny"},
+        {Year: 2022, Month:6,  Day:15, Desc:"Zielone Świątki"},
+        {Year: 2022, Month:6,  Day:16, Desc:"Boże Ciało"},
 
-    */
+        {Year: 2023, Month:4,  Day:9,  Desc:"Wielkanoc"},
+        {Year: 2023, Month:4,  Day:10, Desc:"Poniedziałek Wielkanocny"},
+        {Year: 2023, Month:5,  Day:28, Desc:"Zielone Świątki"},
+        {Year: 2023, Month:6,  Day:8,  Desc:"Boże Ciało"},
 
-    //TODO: bunch of other checks, possibly hardcoded list for Polish bank holidays
+        {Year: 2024, Month:3,  Day:31, Desc:"Wielkanoc"},
+        {Year: 2024, Month:4,  Day:1,  Desc:"Poniedziałek Wielkanocny"},
+        {Year: 2024, Month:5,  Day:19, Desc:"Zielone Świątki"},
+        {Year: 2024, Month:5,  Day:30, Desc:"Boże Ciało"},        
+    ]
 
-    return false;
+
+    isFreeSubFunc=false
+
+    fixedHolidays.forEach(function(h, idx){
+        if (m==h.Month && d==h.Day) isFreeSubFunc=true;
+    })
+    variableHolidays.forEach(function(h, idx){
+        if (y==h.Year && m==h.Month && d==h.Day) isFreeSubFunc=true;
+    })
+
+    return isFreeSubFunc;
 }
 </script>
 
 <script type="text/javascript">
 var _today  = new Date();
-//_today.setDate(_today.getDate()+4) //for testing
 
 function processCurrentConditions(){
     $.get( "dynamic/influx.json?"+Date.now(), function( data ) {
