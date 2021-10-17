@@ -22,6 +22,13 @@
         font-family: 'Ubuntu';
     }
 
+    .no-data {
+        color: red;
+    }
+    .no-data-yet {
+        color: orange;
+    }
+
     #calendarTable td{
         width:  110px;
         height: 200px;
@@ -115,64 +122,64 @@
 </style>
 <table id="topLayout">
     <tr class="weatherDetails">
-        <td colspan="4" class="r"><img id="weatherDetailsIcon" src="https://openweathermap.org/img/w/10d.png" /> <span id="weatherDetailsConditions">N/A</span>, <span id="weatherDetailsTemperature">-99</span>°C</td>
-        <td colspan="4" class="l"><span style="font-size: 32px">PM10</span> <span id="weatherDetailsPM10">999</span> µg/m³</td>
+        <td colspan="4" class="r"><img id="weatherDetailsIcon" src="vendor/error.png" /> <span id="weatherDetailsConditions"><span class="no-data-yet">no data</span></span>, <span id="weatherDetailsTemperature"><span class="no-data-yet">---</span></span>°C</td>
+        <td colspan="4" class="l"><span style="font-size: 32px">PM10</span> <span id="weatherDetailsPM10"><span class="no-data-yet">---</span></span> µg/m³</td>
     </tr>
     <tr class="weatherDetails">
-        <td colspan="4" class="r"><span id="weatherDetailsPressure">9999</span> hPa, <span id="weatherDetailsHumidity">40</span>%</td>
-        <td colspan="4" class="l"><span id="weatherDetailsSunrise">9:99</span> - <span id="weatherDetailsSunset">99:99</span></td>
+        <td colspan="4" class="r"><span id="weatherDetailsPressure"><span class="no-data-yet">----</span></span> hPa, <span id="weatherDetailsHumidity"><span class="no-data-yet">--</span></span>%</td>
+        <td colspan="4" class="l"><span id="weatherDetailsSunrise"><span class="no-data-yet">--:--</span></span> - <span id="weatherDetailsSunset"><span class="no-data-yet">--:--</span></span></td>
     </tr>
     <tr class="clock">
         <td colspan="8" class="c">
-            <span id="clockSpan">99:88:77</span>
+            <span id="clockSpan"><span class="no-data-yet">--:--:--</span></span>
         </td>
     </tr>
     <tr class="counter">
         <td colspan="8" class="c">
-            razem już <span id="counterSpan">99999</span> dni!
+            razem już <span id="counterSpan"><span class="no-data-yet">-----</span></span> dni!
         </td>
     </tr>
     <tr class="filler"></tr>
     <tr class="weatherForecast">
         <td class="c">
             teraz<br />
-            <img        class="forecastIcon"        data-index="0" src="https://openweathermap.org/img/w/10d.png" /><br />
-            &nbsp;<span class="forecastTemperature" data-index="0">-24</span>°C
+            <img        class="forecastIcon"        data-index="0" src="vendor/error.png" /><br />
+            &nbsp;<span class="forecastTemperature" data-index="0"><span class="no-data-yet">---</span></span>°C
         </td>
         <td class="c">
-            <span       class="forecastHourSpan"    data-index="1">33</span><sup style="font-size: medium">00</sup> <br />
-            <img        class="forecastIcon"        data-index="1" src="https://openweathermap.org/img/w/10d.png" /><br />
-            &nbsp;<span class="forecastTemperature" data-index="1">-99</span>°C
+            <span       class="forecastHourSpan"    data-index="1"><span class="no-data-yet">--</span></span><sup style="font-size: medium">00</sup> <br />
+            <img        class="forecastIcon"        data-index="1" src="vendor/error.png" /><br />
+            &nbsp;<span class="forecastTemperature" data-index="1"><span class="no-data-yet">---</span></span>°C
         </td>
         <td class="c">
-            <span       class="forecastHourSpan"    data-index="2">44</span><sup style="font-size: medium">00</sup> <br />
-            <img        class="forecastIcon"        data-index="2" src="https://openweathermap.org/img/w/10d.png" /><br />
-            &nbsp;<span class="forecastTemperature" data-index="2">-99</span>°C
+            <span       class="forecastHourSpan"    data-index="2"><span class="no-data-yet">--</span></span><sup style="font-size: medium">00</sup> <br />
+            <img        class="forecastIcon"        data-index="2" src="vendor/error.png" /><br />
+            &nbsp;<span class="forecastTemperature" data-index="2"><span class="no-data-yet">---</span></span>°C
         </td>
         <td class="c">
-            <span       class="forecastHourSpan"    data-index="3">55</span><sup style="font-size: medium">00</sup> <br />
-            <img        class="forecastIcon"        data-index="3" src="https://openweathermap.org/img/w/10d.png" /><br />
-            &nbsp;<span class="forecastTemperature" data-index="3">-99</span>°C
+            <span       class="forecastHourSpan"    data-index="3"><span class="no-data-yet">--</span></span><sup style="font-size: medium">00</sup> <br />
+            <img        class="forecastIcon"        data-index="3" src="vendor/error.png" /><br />
+            &nbsp;<span class="forecastTemperature" data-index="3"><span class="no-data-yet">---</span></span>°C
         </td>
         <td class="c">
-            <span       class="forecastHourSpan"    data-index="4">66</span><sup style="font-size: medium">00</sup> <br />
-            <img        class="forecastIcon"        data-index="4" src="https://openweathermap.org/img/w/10d.png" /><br />
-            &nbsp;<span class="forecastTemperature" data-index="4">-99</span>°C
+            <span       class="forecastHourSpan"    data-index="4"><span class="no-data-yet">--</span></span><sup style="font-size: medium">00</sup> <br />
+            <img        class="forecastIcon"        data-index="4" src="vendor/error.png" /><br />
+            &nbsp;<span class="forecastTemperature" data-index="4"><span class="no-data-yet">---</span></span>°C
         </td>
         <td class="c">
-            <span       class="forecastHourSpan"    data-index="5">77</span><sup style="font-size: medium">00</sup> <br />
-            <img        class="forecastIcon"        data-index="5" src="https://openweathermap.org/img/w/10d.png" /><br />
-            &nbsp;<span class="forecastTemperature" data-index="5">-99</span>°C
+            <span       class="forecastHourSpan"    data-index="5"><span class="no-data-yet">--</span></span><sup style="font-size: medium">00</sup> <br />
+            <img        class="forecastIcon"        data-index="5" src="vendor/error.png" /><br />
+            &nbsp;<span class="forecastTemperature" data-index="5"><span class="no-data-yet">---</span></span>°C
         </td>
         <td class="c">
-            <span       class="forecastHourSpan"    data-index="6">15</span><sup style="font-size: medium">00</sup> <br />
-            <img        class="forecastIcon"        data-index="6" src="https://openweathermap.org/img/w/10d.png" /><br />
-            &nbsp;<span class="forecastTemperature" data-index="6">-24</span>°C
+            <span       class="forecastHourSpan"    data-index="6"><span class="no-data-yet">--</span></span><sup style="font-size: medium">00</sup> <br />
+            <img        class="forecastIcon"        data-index="6" src="vendor/error.png" /><br />
+            &nbsp;<span class="forecastTemperature" data-index="6"><span class="no-data-yet">---</span></span>°C
         </td>
         <td class="c">
-            <span       class="forecastHourSpan"    data-index="7">15</span><sup style="font-size: medium">00</sup> <br />
-            <img        class="forecastIcon"        data-index="7" src="https://openweathermap.org/img/w/10d.png" /><br />
-            &nbsp;<span class="forecastTemperature" data-index="7">-24</span>°C
+            <span       class="forecastHourSpan"    data-index="7"><span class="no-data-yet">--</span></span><sup style="font-size: medium">00</sup> <br />
+            <img        class="forecastIcon"        data-index="7" src="vendor/error.png" /><br />
+            &nbsp;<span class="forecastTemperature" data-index="7"><span class="no-data-yet">---</span></span>°C
         </td>
     </tr>
     <tr class="filler"></tr>
@@ -190,14 +197,10 @@
     </tr>
     <tr>
         <td data-index="0" class="pastDay"><div class="dayNumber"></div><div class="dayAgenda">
-            <span class="agendaTime">08:00</span> D: test 1<br />
+            <span class="agendaTime"><span class="no-data-yet">--:--</span></span> <span class="no-data-yet">no data loaded yet</span><br />
         </div></td>
         <td data-index="1" class="currentDay"><div class="dayNumber"></div><div class="dayAgenda">
-            <span class="agendaTime">08:00</span> D: test 1<br />
-            <span class="agendaTime">08:00</span> D: test 1ddddd dddd<br />
-            <span class="agendaTime">08:00</span> D: test 1<br />
-            <span class="agendaTime">08:00</span> D: test 1<br />
-            <span class="agendaTime">08:00</span> D: test 1<br />
+            <span class="agendaTime"><span class="no-data-yet">--:--</span></span> <span class="no-data-yet">no data loaded yet</span><br />
         </div></td>
         <td data-index="2" ><div class="dayNumber"></div><div class="dayAgenda"></div></td>
         <td data-index="3" ><div class="dayNumber"></div><div class="dayAgenda"></div></td>
@@ -211,9 +214,9 @@
         <td data-index="9" ><div class="dayNumber"></div><div class="dayAgenda"></div></td>
         <td data-index="10"><div class="dayNumber"></div><div class="dayAgenda"></div></td>
         <td data-index="11" class="freeDay"><div class="dayNumber"></div><div class="dayAgenda">
-            <span class="agendaTime">08:00</span> D: test 1<br />
-            <span class="agendaTime">08:00</span> D: test 1<br />
-            <span class="agendaTime">08:00</span> D: test 1<br />
+            <span class="agendaTime"><span class="no-data-yet">--:--</span></span> <span class="no-data-yet">no data loaded yet</span><br />
+            <span class="agendaTime"><span class="no-data-yet">--:--</span></span> <span class="no-data-yet">no data loaded yet</span><br />
+            <span class="agendaTime"><span class="no-data-yet">--:--</span></span> <span class="no-data-yet">no data loaded yet</span><br />
         </div></td>
         <td data-index="12" class="freeDay"><div class="dayNumber"></div><div class="dayAgenda"></div></td>
         <td data-index="13" class="freeDay"><div class="dayNumber"></div><div class="dayAgenda"></div></td>
@@ -222,22 +225,22 @@
         <td data-index="14"><div class="dayNumber"></div><div class="dayAgenda"></div></td>
         <td data-index="15"><div class="dayNumber"></div><div class="dayAgenda"></div></td>
         <td data-index="16" class="freeDay"><div class="dayNumber"></div><div class="dayAgenda">
-            <span class="agendaTime">08:00</span> D: test 1<br />
-            <span class="agendaTime">08:00</span> D: test 1<br />
-            <span class="agendaTime">08:00</span> D: test 1<br />
-            <span class="agendaTime">08:00</span> D: test 1<br />
-            <span class="agendaTime">08:00</span> D: test 1<br />
-            <span class="agendaTime">08:00</span> D: test 1<br />
-            <span class="agendaTime">08:00</span> D: test 1<br />
+            <span class="agendaTime"><span class="no-data-yet">--:--</span></span> <span class="no-data-yet">no data loaded yet</span><br />
+            <span class="agendaTime"><span class="no-data-yet">--:--</span></span> <span class="no-data-yet">no data loaded yet</span><br />
+            <span class="agendaTime"><span class="no-data-yet">--:--</span></span> <span class="no-data-yet">no data loaded yet</span><br />
+            <span class="agendaTime"><span class="no-data-yet">--:--</span></span> <span class="no-data-yet">no data loaded yet</span><br />
+            <span class="agendaTime"><span class="no-data-yet">--:--</span></span> <span class="no-data-yet">no data loaded yet</span><br />
+            <span class="agendaTime"><span class="no-data-yet">--:--</span></span> <span class="no-data-yet">no data loaded yet</span><br />
+            <span class="agendaTime"><span class="no-data-yet">--:--</span></span> <span class="no-data-yet">no data loaded yet</span><br />
         </div></td>
         <td data-index="17"><div class="dayNumber"></div><div class="dayAgenda">
-            <span class="agendaTime">08:00</span> D: test 1<br />
-            <span class="agendaTime">08:00</span> D: test 1<br />
-            <span class="agendaTime">08:00</span> D: test 1<br />
-            <span class="agendaTime">08:00</span> D: test 1<br />
-            <span class="agendaTime">08:00</span> D: test 1<br />
-            <span class="agendaTime">08:00</span> D: test 1<br />
-            <span class="agendaTime">08:00</span> D: test 1<br />
+            <span class="agendaTime"><span class="no-data-yet">--:--</span></span> <span class="no-data-yet">no data loaded yet</span><br />
+            <span class="agendaTime"><span class="no-data-yet">--:--</span></span> <span class="no-data-yet">no data loaded yet</span><br />
+            <span class="agendaTime"><span class="no-data-yet">--:--</span></span> <span class="no-data-yet">no data loaded yet</span><br />
+            <span class="agendaTime"><span class="no-data-yet">--:--</span></span> <span class="no-data-yet">no data loaded yet</span><br />
+            <span class="agendaTime"><span class="no-data-yet">--:--</span></span> <span class="no-data-yet">no data loaded yet</span><br />
+            <span class="agendaTime"><span class="no-data-yet">--:--</span></span> <span class="no-data-yet">no data loaded yet</span><br />
+            <span class="agendaTime"><span class="no-data-yet">--:--</span></span> <span class="no-data-yet">no data loaded yet</span><br />
         </div></td>
         <td data-index="18"><div class="dayNumber"></div><div class="dayAgenda"></div></td>
         <td data-index="19" class="freeDay"><div class="dayNumber"></div><div class="dayAgenda"></div></td>
@@ -289,16 +292,27 @@ function sameDate(a, b){
 
 <script type="text/javascript">
 function updateWeatherDetailsIcon(icon){
-    $("#weatherDetailsIcon").attr("src","https://openweathermap.org/img/w/"+icon+".png");
+    var url = "https://openweathermap.org/img/w/"+icon+".png";
+    if (icon === null) url = "vendor/error.png";
+
+    $("#weatherDetailsIcon").attr("src", url);
 }
 function updateWeatherDetailsConditions(conditions){
-    $("#weatherDetailsConditions").text(conditions)
+    var displayValue = conditions;
+    if (conditions === null) displayValue = "<span class='no-data'>-----</span>";
+
+    $("#weatherDetailsConditions").html(displayValue)
 }
 function updateWeatherDetailsTemperature(temperature){
-    $("#weatherDetailsTemperature").text(parseInt(temperature))
+    var displayValue = parseInt(temperature);
+    if (temperature === null) displayValue = "<span class='no-data'>---</span>";
+    $("#weatherDetailsTemperature").html(displayValue)
 }
 function updateWeatherDetailsPM10(PM10){
-    $("#weatherDetailsPM10").text(parseInt(PM10))
+    var displayValue = parseInt(PM10);
+    if (PM10 === null) displayValue = "<span class='no-data'>---</span>";
+    $("#weatherDetailsPM10").html(displayValue);
+
     if (PM10>=150){
         $("#weatherDetailsPM10").css("color","red")
     } 
@@ -310,16 +324,28 @@ function updateWeatherDetailsPM10(PM10){
     }
 }
 function updateWeatherDetailsPressure(pressure){
-    $("#weatherDetailsPressure").text(parseInt(pressure/100))
+    var displayValue = parseInt(parseInt(pressure/100));
+    if (pressure === null) displayValue = "<span class='no-data'>----</span>";
+
+    $("#weatherDetailsPressure").html(displayValue)
 }
 function updateWeatherDetailsHumidity(humidity){
-    $("#weatherDetailsHumidity").text(parseInt(humidity))
+    var displayValue = parseInt(parseInt(humidity));
+    if (humidity === null) displayValue = "<span class='no-data'>--</span>";
+
+    $("#weatherDetailsHumidity").html(displayValue)
 }
 function updateWeatherDetailsSunrise(hour, minute){
-    $("#weatherDetailsSunrise").text(hour+":"+padZero(minute))
+    var displayValue = hour+":"+padZero(minute);
+    if (hour === null || minute === null) displayValue = "<span class='no-data'>--:--</span>";
+
+    $("#weatherDetailsSunrise").html(displayValue)
 }
 function updateWeatherDetailsSunset(hour, minute){
-    $("#weatherDetailsSunset").text(hour+":"+padZero(minute))
+    var displayValue = hour+":"+padZero(minute);
+    if (hour === null || minute === null) displayValue = "<span class='no-data'>--:--</span>";
+
+    $("#weatherDetailsSunset").html(displayValue)
 }
 
 function updateClock(hour, minute, second){
@@ -330,18 +356,28 @@ function updateCounter(days){
 }
 
 function updateForecast(index, hourUTC, icon, temperature){
-    var hour = fixTZ(hourUTC)
+    var hourUTC_displayValue = fixTZ(hourUTC);
+    if (hourUTC === null) hourUTC_displayValue = "<span class='no-data'>--</span>";
+
+    var icon_displayValue = "https://openweathermap.org/img/w/"+icon+".png";
+    if (icon === null) icon_displayValue = "vendor/error.png";
+
+    var temperature_displayValue = temperature;
+    if (temperature === null) temperature_displayValue = "<span class='no-data'>--</span>";
+
     if (index>0) {
-        $(".forecastHourSpan[data-index='"+index+"']").text(hour)
+        $(".forecastHourSpan[data-index='"+index+"']").html(hourUTC_displayValue)
     }
-    $(".forecastIcon[data-index='"+index+"']").attr("src","https://openweathermap.org/img/w/"+icon+".png")
-    $(".forecastTemperature[data-index='"+index+"']").text(temperature)
+    $(".forecastIcon[data-index='"+index+"']").attr("src",icon_displayValue)
+    $(".forecastTemperature[data-index='"+index+"']").html(temperature_displayValue)
 }
 
 function updateDay(index, number, isPast, isCurrent, isFree){
     var tdObject = $("#calendarTable td[data-index='"+index+"']")
-    
-    $(tdObject).children(".dayNumber").html(padSpace(number))
+
+    var displayValue = padSpace(number);
+    if (number === null) displayValue = "<span class='no-data'>--</span>";
+    $(tdObject).children(".dayNumber").html(displayValue)
 
     $(tdObject).removeClass("pastDay")
     $(tdObject).removeClass("currentDay")
@@ -424,33 +460,61 @@ function isFree(date){
 
 <script type="text/javascript">
 var _today  = new Date();
+$.ajaxSetup({timeout:3000});
 
 function processCurrentConditions(){
-    $.get( "dynamic/influx.json?"+Date.now(), function( data ) {
-        updateWeatherDetailsTemperature(data["temp"])
-        updateWeatherDetailsPM10(data["pm10"])
-        updateWeatherDetailsPressure(data["pressure"])
-        updateWeatherDetailsHumidity(data["humidity"])
+    $.get({
+        url: "dynamic/influx.json?"+Date.now(), 
+        success: function( data ) {
+            updateWeatherDetailsTemperature(data["temp"])
+            updateWeatherDetailsPM10(data["pm10"])
+            updateWeatherDetailsPressure(data["pressure"])
+            updateWeatherDetailsHumidity(data["humidity"])
+        }, 
+        error: function(XMLHttpRequest, textStatus, errorThrown) {
+            updateWeatherDetailsTemperature(null)
+            updateWeatherDetailsPM10(null)
+            updateWeatherDetailsPressure(null)
+            updateWeatherDetailsHumidity(null)
+        }
     })
 }
 function processWeatherForecast(){
-    $.get( "dynamic/forecast.json?"+Date.now(), function( data ) {
-        updateWeatherDetailsConditions(data.list[0].weather[0].main)
-        updateWeatherDetailsIcon(data.list[0].weather[0].icon)
+    $.get({ 
+        url: "dynamic/forecast.json?"+Date.now(), 
+        success: function( data ) {
+            updateWeatherDetailsConditions(data.list[0].weather[0].main)
+            updateWeatherDetailsIcon(data.list[0].weather[0].icon)
 
-        for (var i=0; i<8; i++){
-            var date=new Date(data.list[i].dt_txt.replace(' ', 'T')) //replace per https://stackoverflow.com/a/13363791
-            updateForecast(i, date.getHours(), data.list[i].weather[0].icon, parseInt(data.list[i].main.temp))
+            for (var i=0; i<8; i++){
+                var date=new Date(data.list[i].dt_txt.replace(' ', 'T')) //replace per https://stackoverflow.com/a/13363791
+                updateForecast(i, date.getHours(), data.list[i].weather[0].icon, parseInt(data.list[i].main.temp))
+            }
+        },
+        error: function(XMLHttpRequest, textStatus, errorThrown) {
+            updateWeatherDetailsConditions(null)
+            updateWeatherDetailsIcon(null)
+
+            for (var i=0; i<8; i++){
+                updateForecast(i, null, null, null)
+            }
         }
     })
 }
 function processSunRiseSet(){
-    $.get("dynamic/sun.json?"+Date.now(), function( data ) {
-        var dateSunrise=new Date(data.results["sunrise"])
-        var dateSunset =new Date(data.results["sunset"])
-
-        updateWeatherDetailsSunrise(dateSunrise.getHours(), dateSunrise.getMinutes())
-        updateWeatherDetailsSunset( dateSunset.getHours(),  dateSunset.getMinutes())
+    $.get({
+        url: "dynamic/sun.json?"+Date.now(), 
+        success: function( data ) {
+            var dateSunrise=new Date(data.results["sunrise"])
+            var dateSunset =new Date(data.results["sunset"])
+    
+            updateWeatherDetailsSunrise(dateSunrise.getHours(), dateSunrise.getMinutes())
+            updateWeatherDetailsSunset( dateSunset.getHours(),  dateSunset.getMinutes())
+        },
+        error: function(XMLHttpRequest, textStatus, errorThrown) {
+            updateWeatherDetailsSunrise(null, null)
+            updateWeatherDetailsSunset(null, null)
+        }
     })
 }
 function clockTick(){
@@ -466,57 +530,74 @@ function processCounter(){
     updateCounter(diffDays)        
 }
 function processCalendar(){
-    $.get( "dynamic/cal.ics?"+Date.now(), function( data ) {
-        var offset = _today.getDay()-1;
-        if (offset<0) offset=6;
-
-        var jcalData = ICAL.parse(data);
-        var vcalendar = new ICAL.Component(jcalData);
-        var events = vcalendar.getAllSubcomponents();
-
-        for (var i=0; i<21; i++){
-            var day = new Date(todayPlusDays(i-offset))
-            updateDay(i, day.getDate(), day<_today, isToday(day), isFree(day))
-            var eventsToAdd=[]
-
-            day = new Date(day).addHours(window.tz_delta)
-
-            for (var e=0; e<events.length; e++){
-                var evt = events[e]
-                var forThisDay = false
-                var hour = 0
-                var min  = 0 
-                var desc = "--"
-                var eventDate=new Date()
-
-                for (var p=0; p<evt.jCal[1].length; p++){
-                    var propName  = evt.jCal[1][p][0]
-                    var propValue = evt.jCal[1][p][3]
-
-                    if (propName=="dtstart") {
-                        if (propValue.indexOf(day.toISOString().substring(0,10))==0){
-                            forThisDay = true;
-                            eventDate = new Date(propValue+window.tz_desc) //TODO: fix to read that property from evt object
-                            hour = eventDate.getHours()
-                            min  = eventDate.getMinutes()
-
+    $.get({ 
+        url: "dynamic/cal.ics?"+Date.now(), 
+        success: function( data ) {
+            try {
+                var offset = _today.getDay()-1;
+                if (offset<0) offset=6;
+        
+                var jcalData = ICAL.parse(data);
+                var vcalendar = new ICAL.Component(jcalData);
+                var events = vcalendar.getAllSubcomponents();
+        
+                for (var i=0; i<21; i++){
+                    var day = new Date(todayPlusDays(i-offset))
+                    updateDay(i, day.getDate(), day<_today, isToday(day), isFree(day))
+                    var eventsToAdd=[]
+        
+                    day = new Date(day).addHours(window.tz_delta)
+        
+                    for (var e=0; e<events.length; e++){
+                        var evt = events[e]
+                        var forThisDay = false
+                        var hour = 0
+                        var min  = 0 
+                        var desc = "--"
+                        var eventDate=new Date()
+        
+                        for (var p=0; p<evt.jCal[1].length; p++){
+                            var propName  = evt.jCal[1][p][0]
+                            var propValue = evt.jCal[1][p][3]
+        
+                            if (propName=="dtstart") {
+                                if (propValue.indexOf(day.toISOString().substring(0,10))==0){
+                                    forThisDay = true;
+                                    eventDate = new Date(propValue+window.tz_desc) //TODO: fix to read that property from evt object
+                                    hour = eventDate.getHours()
+                                    min  = eventDate.getMinutes()
+        
+                                }
+                            }
+                            if (propName=="summary") {
+                                desc = evt.jCal[1][p][3]
+                            }
+                        }
+        
+                        if (forThisDay) {
+                            eventsToAdd.push({"hour":hour, "minute": min, "desc": desc})
                         }
                     }
-                    if (propName=="summary") {
-                        desc = evt.jCal[1][p][3]
-                    }
-                }
-
-                if (forThisDay) {
-                    eventsToAdd.push({"hour":hour, "minute": min, "desc": desc})
+        
+                    eventsToAdd.sort((a, b) => {
+                        return (60*a.hour+a.minute) - (60*b.hour+b.minute) 
+                    })
+        
+                    updateAgenda(i, eventsToAdd)
                 }
             }
-
-            eventsToAdd.sort((a, b) => {
-                return (60*a.hour+a.minute) - (60*b.hour+b.minute) 
-            })
-
-            updateAgenda(i, eventsToAdd)
+            catch (error) {
+                for (var i=0; i<21; i++){
+                    updateDay(i, null, true, false, false)
+                    updateAgenda(i, [{"hour": 0, "minute": 0, "desc": "error loading data"}])
+                }
+            }
+        },
+        error: function(XMLHttpRequest, textStatus, errorThrown) {
+            for (var i=0; i<21; i++){
+                updateDay(i, null, true, false, false)
+                updateAgenda(i, [{"hour": 0, "minute": 0, "desc": "error loading data"}])
+            }
         }
     })  
 }
