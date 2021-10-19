@@ -402,8 +402,10 @@ function updateAgenda(index, events){ //events is array of objects {hour, minute
     for (var i=0; i<events.length; i++){
         var event = events[i]
         var desc = event.desc.substring(0,30)
+        var time = padZero(event.hour)+":"+padZero(event.minute)
+        if (isNaN(event.hour) || isNaN(event.minute)) time = "cały dzień"
 
-        $(divObject).append("<span class='agendaTime'>"+padZero(event.hour)+":"+padZero(event.minute)+"</span> "+desc+"<br />")
+        $(divObject).append("<span class='agendaTime'>"+time+"</span> "+desc+"<br />")
     }
 }
 </script>
