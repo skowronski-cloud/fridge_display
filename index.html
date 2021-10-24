@@ -83,6 +83,15 @@
     }
     .agendaTime {
         font-weight: bold;
+        text-decoration: underline;
+    }
+
+    .agendaEntry {
+        overflow: hidden;
+        text-overflow: clip;
+        display: -webkit-box;
+        -webkit-line-clamp: 2; /* number of lines to show */
+        -webkit-box-orient: vertical;
     }
 
     .l { text-align: left; }
@@ -197,10 +206,10 @@
     </tr>
     <tr>
         <td data-index="0" class="pastDay"><div class="dayNumber"></div><div class="dayAgenda">
-            <span class="agendaTime"><span class="no-data-yet">--:--</span></span> <span class="no-data-yet">no data loaded yet</span><br />
+            <span class="agendaEntry"><span class="agendaTime"><span class="no-data-yet">--:--</span></span> <span class="no-data-yet">no data loaded yet</span></span></div><br />
         </div></td>
         <td data-index="1" class="currentDay"><div class="dayNumber"></div><div class="dayAgenda">
-            <span class="agendaTime"><span class="no-data-yet">--:--</span></span> <span class="no-data-yet">no data loaded yet</span><br />
+            <span class="agendaEntry"><span class="agendaTime"><span class="no-data-yet">--:--</span></span> <span class="no-data-yet">no data loaded yet</span></span>
         </div></td>
         <td data-index="2" ><div class="dayNumber"></div><div class="dayAgenda"></div></td>
         <td data-index="3" ><div class="dayNumber"></div><div class="dayAgenda"></div></td>
@@ -214,9 +223,9 @@
         <td data-index="9" ><div class="dayNumber"></div><div class="dayAgenda"></div></td>
         <td data-index="10"><div class="dayNumber"></div><div class="dayAgenda"></div></td>
         <td data-index="11" class="freeDay"><div class="dayNumber"></div><div class="dayAgenda">
-            <span class="agendaTime"><span class="no-data-yet">--:--</span></span> <span class="no-data-yet">no data loaded yet</span><br />
-            <span class="agendaTime"><span class="no-data-yet">--:--</span></span> <span class="no-data-yet">no data loaded yet</span><br />
-            <span class="agendaTime"><span class="no-data-yet">--:--</span></span> <span class="no-data-yet">no data loaded yet</span><br />
+            <span class="agendaEntry"><span class="agendaTime"><span class="no-data-yet">--:--</span></span> <span class="no-data-yet">no data loaded yet</span></span>
+            <span class="agendaEntry"><span class="agendaTime"><span class="no-data-yet">--:--</span></span> <span class="no-data-yet">no data loaded yet</span></span>
+            <span class="agendaEntry"><span class="agendaTime"><span class="no-data-yet">--:--</span></span> <span class="no-data-yet">no data loaded yet</span></span>
         </div></td>
         <td data-index="12" class="freeDay"><div class="dayNumber"></div><div class="dayAgenda"></div></td>
         <td data-index="13" class="freeDay"><div class="dayNumber"></div><div class="dayAgenda"></div></td>
@@ -225,22 +234,22 @@
         <td data-index="14"><div class="dayNumber"></div><div class="dayAgenda"></div></td>
         <td data-index="15"><div class="dayNumber"></div><div class="dayAgenda"></div></td>
         <td data-index="16" class="freeDay"><div class="dayNumber"></div><div class="dayAgenda">
-            <span class="agendaTime"><span class="no-data-yet">--:--</span></span> <span class="no-data-yet">no data loaded yet</span><br />
-            <span class="agendaTime"><span class="no-data-yet">--:--</span></span> <span class="no-data-yet">no data loaded yet</span><br />
-            <span class="agendaTime"><span class="no-data-yet">--:--</span></span> <span class="no-data-yet">no data loaded yet</span><br />
-            <span class="agendaTime"><span class="no-data-yet">--:--</span></span> <span class="no-data-yet">no data loaded yet</span><br />
-            <span class="agendaTime"><span class="no-data-yet">--:--</span></span> <span class="no-data-yet">no data loaded yet</span><br />
-            <span class="agendaTime"><span class="no-data-yet">--:--</span></span> <span class="no-data-yet">no data loaded yet</span><br />
-            <span class="agendaTime"><span class="no-data-yet">--:--</span></span> <span class="no-data-yet">no data loaded yet</span><br />
+            <span class="agendaEntry"><span class="agendaTime"><span class="no-data-yet">--:--</span></span> <span class="no-data-yet">no data loaded yet</span></span>
+            <span class="agendaEntry"><span class="agendaTime"><span class="no-data-yet">--:--</span></span> <span class="no-data-yet">no data loaded yet</span></span>
+            <span class="agendaEntry"><span class="agendaTime"><span class="no-data-yet">--:--</span></span> <span class="no-data-yet">no data loaded yet</span></span>
+            <span class="agendaEntry"><span class="agendaTime"><span class="no-data-yet">--:--</span></span> <span class="no-data-yet">no data loaded yet</span></span>
+            <span class="agendaEntry"><span class="agendaTime"><span class="no-data-yet">--:--</span></span> <span class="no-data-yet">no data loaded yet</span></span>
+            <span class="agendaEntry"><span class="agendaTime"><span class="no-data-yet">--:--</span></span> <span class="no-data-yet">no data loaded yet</span></span>
+            <span class="agendaEntry"><span class="agendaTime"><span class="no-data-yet">--:--</span></span> <span class="no-data-yet">no data loaded yet</span></span>
         </div></td>
         <td data-index="17"><div class="dayNumber"></div><div class="dayAgenda">
-            <span class="agendaTime"><span class="no-data-yet">--:--</span></span> <span class="no-data-yet">no data loaded yet</span><br />
-            <span class="agendaTime"><span class="no-data-yet">--:--</span></span> <span class="no-data-yet">no data loaded yet</span><br />
-            <span class="agendaTime"><span class="no-data-yet">--:--</span></span> <span class="no-data-yet">no data loaded yet</span><br />
-            <span class="agendaTime"><span class="no-data-yet">--:--</span></span> <span class="no-data-yet">no data loaded yet</span><br />
-            <span class="agendaTime"><span class="no-data-yet">--:--</span></span> <span class="no-data-yet">no data loaded yet</span><br />
-            <span class="agendaTime"><span class="no-data-yet">--:--</span></span> <span class="no-data-yet">no data loaded yet</span><br />
-            <span class="agendaTime"><span class="no-data-yet">--:--</span></span> <span class="no-data-yet">no data loaded yet</span><br />
+            <span class="agendaEntry"><span class="agendaTime"><span class="no-data-yet">--:--</span></span> <span class="no-data-yet">no data loaded yet</span></span>
+            <span class="agendaEntry"><span class="agendaTime"><span class="no-data-yet">--:--</span></span> <span class="no-data-yet">no data loaded yet</span></span>
+            <span class="agendaEntry"><span class="agendaTime"><span class="no-data-yet">--:--</span></span> <span class="no-data-yet">no data loaded yet</span></span>
+            <span class="agendaEntry"><span class="agendaTime"><span class="no-data-yet">--:--</span></span> <span class="no-data-yet">no data loaded yet</span></span>
+            <span class="agendaEntry"><span class="agendaTime"><span class="no-data-yet">--:--</span></span> <span class="no-data-yet">no data loaded yet</span></span>
+            <span class="agendaEntry"><span class="agendaTime"><span class="no-data-yet">--:--</span></span> <span class="no-data-yet">no data loaded yet</span></span>
+            <span class="agendaEntry"><span class="agendaTime"><span class="no-data-yet">--:--</span></span> <span class="no-data-yet">no data loaded yet</span></span>
         </div></td>
         <td data-index="18"><div class="dayNumber"></div><div class="dayAgenda"></div></td>
         <td data-index="19" class="freeDay"><div class="dayNumber"></div><div class="dayAgenda"></div></td>
@@ -401,11 +410,11 @@ function updateAgenda(index, events){ //events is array of objects {hour, minute
 
     for (var i=0; i<events.length; i++){
         var event = events[i]
-        var desc = event.desc.substring(0,30)
+        var desc = event.desc.substring(0,64)
         var time = padZero(event.hour)+":"+padZero(event.minute)
         if (isNaN(event.hour) || isNaN(event.minute)) time = "cały dzień"
 
-        $(divObject).append("<span class='agendaTime'>"+time+"</span> "+desc+"<br />")
+        $(divObject).append("<span class='agendaEntry'><span class='agendaTime'>"+time+"</span> "+desc+"</span>")
     }
 }
 </script>
