@@ -90,6 +90,7 @@
         overflow: hidden;
         text-overflow: clip;
         word-break: break-all;
+        overflow-wrap:  break-word;;
         display: -webkit-box;
         -webkit-line-clamp: 2; /* number of lines to show */
         -webkit-box-orient: vertical;
@@ -260,11 +261,7 @@
 
 <script type="text/javascript" src="vendor/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" src="vendor/ical.min.js"></script>
-
-<script>
-    window.tz_delta=2
-    window.tz_desc="+02:00"
-</script>
+<script type="text/javascript" src="vendor/luxon.min.js"></script>
 
 <script type="text/javascript">
 function padZero(x){
@@ -288,7 +285,7 @@ function isToday(day){
 }
 
 function fixTZ(hourUTC){
-    var fixed = (hourUTC-window.tz_delta)%24;
+    var fixed = (hourUTC-1)%24; //FIXME: there's utc from API
     if (fixed<0) {
         fixed=24+fixed;
     }
@@ -557,8 +554,7 @@ function processCalendar(){
                     var day = new Date(todayPlusDays(i-offset))
                     updateDay(i, day.getDate(), day<_today, isToday(day), isFree(day))
                     var eventsToAdd=[]
-        
-                    day = new Date(day).addHours(window.tz_delta)
+                    var dayTZ = new luxon.DateTime.fromISO(day.toISOString()) //TZ is inherited from system here
         
                     for (var e=0; e<events.length; e++){
                         var evt = events[e]
@@ -566,19 +562,21 @@ function processCalendar(){
                         var hour = 0
                         var min  = 0 
                         var desc = "--"
+                        var tzid = "UTC"
                         var eventDate=new Date()
         
                         for (var p=0; p<evt.jCal[1].length; p++){
                             var propName  = evt.jCal[1][p][0]
-                            var propValue = evt.jCal[1][p][3]
         
                             if (propName=="dtstart") {
-                                if (propValue.indexOf(day.toISOString().substring(0,10))==0){
+                                tzid = evt.jCal[1][p][1]["tzid"];
+                                date = evt.jCal[1][p][3];
+                                dateTZ = new luxon.DateTime.fromISO(date).setZone(tzid) //TZ is set from actual iCal data here
+
+                                if (dayTZ.year==dateTZ.year && dayTZ.month==dateTZ.month && dayTZ.day==dateTZ.day){
                                     forThisDay = true;
-                                    eventDate = new Date(propValue+window.tz_desc) //TODO: fix to read that property from evt object
-                                    hour = eventDate.getHours()
-                                    min  = eventDate.getMinutes()
-        
+                                    hour = eventDate.hour
+                                    min  = eventDate.minute
                                 }
                             }
                             if (propName=="summary") {
